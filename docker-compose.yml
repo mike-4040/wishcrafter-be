@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:15
+    container_name: wishcrafter_db
+    # env variables from .env file accessible in the container by default
+    # adding here for clarity
+    env_file: .env
+    ports:
+      - "${POSTGRES_PORT}:5432"

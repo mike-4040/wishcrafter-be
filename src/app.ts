@@ -1,9 +1,11 @@
 import express from 'express';
 
-const port = process.env.PORT || 3000;
+import { secrets } from './utils/secrets';
+
+const { app: { port } } = secrets
 
 express().get('/', (req, res) => {
   res.send('Hello World');
-}).listen(3000, () => {
+}).listen(port, () => {
   console.log(`App is running on port ${port}`);
 })
