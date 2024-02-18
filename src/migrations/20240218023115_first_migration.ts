@@ -7,7 +7,7 @@ export async function up(knex: Knex): Promise<void> {
       table.text('first_name').notNullable();
       table.text('email').notNullable().index();
       table.boolean('auth_created');
-      table.timestamp('created_at').notNullable();
+      table.timestamp('created_at', { useTz: false }).notNullable();
     })
 }
 

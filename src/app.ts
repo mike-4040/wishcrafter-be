@@ -12,7 +12,7 @@ express()
   .get('/user', async (req, res) => {
     const user = await getUserByEmail('123');
     console.log({ user })
-    res.send('User');
+    res.send(user);
   }).listen(port, () => {
     console.log(`App is running on port ${port}`);
   })
