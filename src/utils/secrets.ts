@@ -1,4 +1,4 @@
-const { env } = process;
+import { env } from 'node:process';
 
 export const secrets = {
   app: {
@@ -6,6 +6,7 @@ export const secrets = {
   },
   postgres: {
     databaseName: env.POSTGRES_DB,
+    host: env.POSTGRES_HOST,
     password: env.POSTGRES_PASSWORD,
     port: parseInt(env.POSTGRES_PORT || "0"),
     user: env.POSTGRES_USER,
