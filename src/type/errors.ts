@@ -1,1 +1,1 @@
-export { FirebaseError } from "firebase-admin";
+export { FirebaseError } from 'firebase-admin';

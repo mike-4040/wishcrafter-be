@@ -1,11 +1,11 @@
-import { randomUUID } from "node:crypto";
+import { randomUUID } from 'node:crypto';
 
-import { pg } from "../services";
-import { DBUser } from "./type";
+import { pg } from '../services';
+import { DBUser } from './type';
 
 export async function getUserByEmail(email: string) {
-  return pg<DBUser>("users")
-    .select("id", "auth_created")
+  return pg<DBUser>('users')
+    .select('id', 'auth_created')
     .where({ email })
     .first();
 }
@@ -19,7 +19,7 @@ export async function createUser(email: string, firstName: string) {
     created_at: new Date(),
   };
 
-  const [result] = await pg<DBUser>("users").insert(userToInsert, ["id"]);
+  const [result] = await pg<DBUser>('users').insert(userToInsert, ['id']);
 
   return result;
 }

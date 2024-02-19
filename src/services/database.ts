@@ -5,7 +5,7 @@ import { secrets } from '../utils/secrets';
 const { postgres } = secrets;
 
 export const pg = knex({
-  client: "postgresql",
+  client: 'postgresql',
   connection: {
     database: postgres.databaseName,
     user: postgres.user,

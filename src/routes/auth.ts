@@ -1,7 +1,7 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-import { login, signUp } from "../domains/auth";
+import { login, signUp } from '../domains/auth';
 
 export const authRouter = Router()
-  .post("/login", login)
-  .post("/signup", signUp);
+  .post('/login', login)
+  .post('/signup', signUp);

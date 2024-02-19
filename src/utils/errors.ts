@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
 
 /**
  * Error caused by user input, such as invalid email or password
@@ -18,7 +18,7 @@ export function errorHandler(
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) {
   if (err instanceof UserError) {
     console.error(err.message);
@@ -32,7 +32,7 @@ export function errorHandler(
     return;
   }
 
-  console.error("errorHandler: ", err);
+  console.error('errorHandler: ', err);
 
-  res.status(500).send({ success: false, errMessage: "Internal Server Error" });
+  res.status(500).send({ success: false, errMessage: 'Internal Server Error' });
 }
