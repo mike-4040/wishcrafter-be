@@ -7,6 +7,7 @@
     "node": ">20.1.0"
   },
   "scripts": {
+    "build": "tsc",
     "dev": "tsc -w & GOOGLE_APPLICATION_CREDENTIALS=./keep/wishcrafter-staging-gac.json node --env-file=.env --watch ./build/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "knex": "node --env-file=.env ./node_modules/.bin/knex --knexfile ./src/knexfile.ts",

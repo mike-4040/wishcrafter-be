@@ -1,10 +1,10 @@
 import express from 'express';
 
-import { authGuard } from './domains/auth/authGuard';
+import { authGuard } from './domains/auth';
 import { authRouter } from './routes/auth';
 import { errorHandler, secrets } from './utils';
 import { getUserByEmail } from './models/user';
-import { getAuthUser } from './services/firebase';
+import { getAuthUser } from "./services";
 
 const { app: { port } } = secrets
 
