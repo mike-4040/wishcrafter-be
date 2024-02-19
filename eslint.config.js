@@ -30,6 +30,7 @@ module.exports = tsEslint.config({
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
+        args: 'all',
         varsIgnorePattern: '^_',
         destructuredArrayIgnorePattern: '^_',
         argsIgnorePattern: '^_',

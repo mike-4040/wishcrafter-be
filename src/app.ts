@@ -12,12 +12,12 @@ const {
 
 express()
   .use(express.json())
-  .get('/', (req, res) => {
+  .get('/', (_req, res) => {
     res.send('Hello World');
   })
   .use('/auth', authRouter)
   .use(authGuard) // All routes below this line are protected
-  .get('/user', async (req, res) => {
+  .get('/user', async (_req, res) => {
     const user = await getUserByEmail('1@1.com');
     console.log({ user });
 

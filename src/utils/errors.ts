@@ -16,7 +16,7 @@ export class FrontError extends Error { }
 
 export function errorHandler(
   err: Error,
-  req: Request,
+  _req: Request,
   res: Response,
   _next: NextFunction
 ) {

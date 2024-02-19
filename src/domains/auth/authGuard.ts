@@ -5,7 +5,7 @@ import { UserError } from '../../utils';
 
 export function authGuard(
   req: AuthedRequest,
-  res: Response,
+  _res: Response,
   next: NextFunction
 ) {
   try {
