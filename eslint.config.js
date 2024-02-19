@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const eslint = require('@eslint/js');
 const tsEslint = require('typescript-eslint');
-const stylisticTs = require('@stylistic/eslint-plugin-ts');
+const stylistic = require('@stylistic/eslint-plugin');
 
 module.exports = tsEslint.config({
   files: ['src/**/*.ts', 'eslint.config.js'],
@@ -12,7 +12,7 @@ module.exports = tsEslint.config({
   extends: [eslint.configs.recommended, ...tsEslint.configs.recommended],
   plugins: {
     '@typescript-eslint': tsEslint.plugin,
-    '@stylistic/ts': stylisticTs,
+    '@stylistic': stylistic,
   },
   languageOptions: {
     parser: tsEslint.parser,
@@ -35,6 +35,7 @@ module.exports = tsEslint.config({
         argsIgnorePattern: '^_',
       },
     ],
-    '@stylistic/ts/quotes': ['error', 'single'],
+    '@stylistic/quotes': ['error', 'single'],
+    '@stylistic/eol-last': ['error', 'always'],
   },
 });
