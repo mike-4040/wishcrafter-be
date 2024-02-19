@@ -1,9 +1,7 @@
-import { Router } from 'express';
+import { Router } from "express";
 
-import { signUp } from '../domains/auth/singUpController';
-import { login } from '../domains/auth/loginController';
+import { login, signUp } from "../domains/auth";
 
 export const authRouter = Router()
-  .post('/login', login)
-  .post('/signup', signUp);
-
+  .post("/login", login)
+  .post("/signup", signUp);
