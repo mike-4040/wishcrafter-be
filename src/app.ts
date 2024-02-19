@@ -4,6 +4,7 @@ import { authGuard } from './domains/auth/authGuard';
 import { authRouter } from './routes/auth';
 import { errorHandler, secrets } from './utils';
 import { getUserByEmail } from './models/user';
+import { getAuthUser } from './services/firebase';
 
 const { app: { port } } = secrets
 
@@ -17,6 +18,10 @@ express()
   .get('/user', async (req, res) => {
     const user = await getUserByEmail('1@1.com');
     console.log({ user })
+
+    const authUser = await getAuthUser('1@1.com');
+
+    console.log({ authUser })
     res.send(user);
   })
   .use(errorHandler)
