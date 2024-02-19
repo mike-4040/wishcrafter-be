@@ -52,3 +52,9 @@ node_modules/
 
 # build directory
 build/
+
+# Useful local files, not to be committed
+keep/
+
+# Firebase emulator data directory
+emulator_data/
