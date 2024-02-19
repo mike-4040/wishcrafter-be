@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
+import { initializeApp } from 'firebase-admin/app';
 
 const app = initializeApp();
 

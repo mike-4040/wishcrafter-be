@@ -1,9 +1,9 @@
-import { Response, NextFunction } from 'express';
+import { NextFunction, Response } from 'express';
 
+import { asString, UserError } from '../../utils';
 import { AuthedRequest, FirebaseError } from '../../type';
-import { UserError, asString } from '../../utils';
-import { createUser, getUserByEmail } from '../../models/user';
 import { createAuthUser, createCustomToken } from '../../services';
+import { createUser, getUserByEmail } from '../../models/user';
 
 const AUTH_USER_EXISTS_ERRORS = [
   'auth/email-already-exists',
@@ -13,7 +13,7 @@ const AUTH_USER_EXISTS_ERRORS = [
 export async function signUp(
   req: AuthedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const { body } = req;
@@ -36,7 +36,7 @@ export async function signUp(
       const newDbUser = await createUser(email, firstName).catch(
         (cause: Error) => {
           throw new Error('signUp-creationFailed-1', { cause });
-        }
+        },
       );
 
       ({ id } = newDbUser);

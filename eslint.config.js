@@ -37,5 +37,16 @@ module.exports = tsEslint.config({
     ],
     '@stylistic/quotes': ['error', 'single'],
     '@stylistic/eol-last': ['error', 'always'],
+    'no-duplicate-imports': 'error',
+    'sort-imports': [
+      'error',
+      {
+        ignoreCase: true,
+        ignoreDeclarationSort: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'],
+        allowSeparatedGroups: true,
+      },
+    ],
   },
 });

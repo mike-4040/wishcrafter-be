@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
-import { pg } from '../services';
 import { DBUser } from './type';
+import { pg } from '../services';
 
 export async function getUserByEmail(email: string) {
   return pg<DBUser>('users')
