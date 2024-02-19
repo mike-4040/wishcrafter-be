@@ -1,12 +1,12 @@
-import type { Knex } from "knex";
+import type { Knex } from 'knex';
 
-import { secrets } from "./utils/secrets";
+import { secrets } from './utils/secrets';
 
 const { postgres } = secrets;
 
 const config: { [key: string]: Knex.Config } = {
   development: {
-    client: "postgresql",
+    client: 'postgresql',
     connection: {
       database: postgres.databaseName,
       user: postgres.user,
@@ -18,12 +18,12 @@ const config: { [key: string]: Knex.Config } = {
       max: 10
     },
     migrations: {
-      tableName: "knex_migrations"
+      tableName: 'knex_migrations'
     }
   },
 
   staging: {
-    client: "postgresql",
+    client: 'postgresql',
     connection: {
       database: postgres.databaseName,
       user: postgres.user,
@@ -35,12 +35,12 @@ const config: { [key: string]: Knex.Config } = {
       max: 10
     },
     migrations: {
-      tableName: "knex_migrations"
+      tableName: 'knex_migrations'
     }
   },
 
   production: {
-    client: "postgresql",
+    client: 'postgresql',
     connection: {
       database: postgres.databaseName,
       user: postgres.user,
@@ -52,7 +52,7 @@ const config: { [key: string]: Knex.Config } = {
       max: 10
     },
     migrations: {
-      tableName: "knex_migrations"
+      tableName: 'knex_migrations'
     }
   }
 

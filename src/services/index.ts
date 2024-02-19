@@ -1,2 +1,2 @@
-export * from "./database";
-export * from "./firebaseAuth";
+export * from './database';
+export * from './firebaseAuth';

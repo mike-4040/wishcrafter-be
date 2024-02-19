@@ -2,29 +2,29 @@ import express from 'express';
 
 import { authGuard } from './domains/auth';
 import { authRouter } from './routes/auth';
-import { errorHandler, secrets } from './utils';
+import { getAuthUser } from './services';
 import { getUserByEmail } from './models/user';
-import { getAuthUser } from "./services";
+import { errorHandler, secrets } from './utils';
 
-const { app: { port } } = secrets
+const {
+  app: { port },
+} = secrets;
 
 express()
   .use(express.json())
-  .get('/', (req, res) => {
+  .get('/', (_req, res) => {
     res.send('Hello World');
   })
   .use('/auth', authRouter)
   .use(authGuard) // All routes below this line are protected
-  .get('/user', async (req, res) => {
+  .get('/user', async (_req, res) => {
     const user = await getUserByEmail('1@1.com');
-    console.log({ user })
+    console.log({ user });
 
     const authUser = await getAuthUser('1@1.com');
 
-    console.log({ authUser })
+    console.log({ authUser });
     res.send(user);
   })
   .use(errorHandler)
-  .listen(port, () =>
-    console.log(`App is running on port ${port}`)
-  )
+  .listen(port, () => console.log(`App is running on port ${port}`));
