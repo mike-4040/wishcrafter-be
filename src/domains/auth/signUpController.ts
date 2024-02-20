@@ -27,6 +27,8 @@ export async function signUp(
     });
 
     if (dbUser?.auth_created) {
+      // TODO: The user might exist in the db but not in the auth system
+      // We should check for that and handle it
       throw new UserError('signUpAccountExists');
     }
 
@@ -65,10 +67,13 @@ export async function signUp(
     console.dir({ authUser }, { depth: null });
 
     const customToken = await createCustomToken(id);
+    const user = {
+      id: authUser.uid,
+      email: authUser.email,
+      customToken,
+    };
 
-    console.log({ customToken });
-
-    res.status(200).send({ success: true, message: 'Sign up' });
+    res.status(200).send({ success: true, user });
   } catch (err) {
     next(err);
   }

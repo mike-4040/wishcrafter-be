@@ -5,7 +5,7 @@ const app = initializeApp();
 
 const auth = getAuth(app);
 
-export async function getAuthUser(email: string) {
+export async function getAuthUserByEmail(email: string) {
   return auth.getUserByEmail(email);
 }
 
@@ -24,6 +24,10 @@ export async function createAuthUser(user: createAuthUser) {
     emailVerified: false,
     displayName: user.displayName,
   });
+}
+
+export async function getAuthUserById(uid: string) {
+  return auth.getUser(uid);
 }
 
 export async function createCustomToken(uid: string) {
