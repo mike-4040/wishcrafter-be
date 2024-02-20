@@ -1,8 +1,9 @@
+import cors from 'cors';
 import express from 'express';
 
 import { authGuard } from './domains/auth';
 import { authRouter } from './routes/auth';
-import { getAuthUser } from './services';
+import { getAuthUserByEmail } from './services';
 import { getUserByEmail } from './models/user';
 import { errorHandler, secrets } from './utils';
 
@@ -12,6 +13,7 @@ const {
 
 express()
   .use(express.json())
+  .use(cors()) // TODO: Configure CORS
   .get('/', (_req, res) => {
     res.send('Hello World');
   })
@@ -21,7 +23,7 @@ express()
     const user = await getUserByEmail('1@1.com');
     console.log({ user });
 
-    const authUser = await getAuthUser('1@1.com');
+    const authUser = await getAuthUserByEmail('1@1.com');
 
     console.log({ authUser });
     res.send(user);
