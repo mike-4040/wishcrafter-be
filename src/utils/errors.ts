@@ -5,20 +5,20 @@ import { NextFunction, Request, Response } from 'express';
  * - surface to the user
  * - logging only message
  */
-export class UserError extends Error { }
+export class UserError extends Error {}
 
 /**
  * Error caused by front-end code
  *  - surface to the user
  *  - logging message and stack trace
  */
-export class FrontError extends Error { }
+export class FrontError extends Error {}
 
 export function errorHandler(
   err: Error,
   _req: Request,
   res: Response,
-  _next: NextFunction
+  _next: NextFunction,
 ) {
   if (err instanceof UserError) {
     console.error(err.message);
@@ -34,5 +34,5 @@ export function errorHandler(
 
   console.error('errorHandler: ', err);
 
-  res.status(500).send({ success: false, errMessage: 'Internal Server Error' });
+  res.status(500).send({ success: false, message: 'Internal Server Error' });
 }

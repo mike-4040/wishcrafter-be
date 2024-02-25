@@ -12,6 +12,8 @@
     "format": "eslint --config ./eslint.config.js --fix ./eslint.config.js ./src",
     "dev": "tsc -w & GOOGLE_APPLICATION_CREDENTIALS=./keep/wishcrafter-staging-gac.json node --env-file=.env --watch ./build/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "db:start": "docker-compose up -d",
+    "db:stop": "docker-compose down",
     "knex": "node --env-file=.env ./node_modules/.bin/knex --knexfile ./src/knexfile.ts",
     "emulate": "firebase emulators:start --import=./emulator_data --export-on-exit"
   },
