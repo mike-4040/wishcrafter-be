@@ -14,9 +14,8 @@ const {
 express()
   .use(express.json())
   .use(cors()) // TODO: Configure CORS
-  .get('/', (_req, res) => {
-    res.send('Hello World');
-  })
+  // unprotected routes
+  .get('/', (_req, res) => res.send('Hello World'))
   .use('/auth', authRouter)
   .use(authGuard) // All routes below this line are protected
   .get('/user', async (_req, res) => {
