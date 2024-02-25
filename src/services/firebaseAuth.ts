@@ -33,3 +33,8 @@ export async function getAuthUserById(uid: string) {
 export async function createCustomToken(uid: string) {
   return auth.createCustomToken(uid)
 }
+
+export async function verifyIdToken(idToken: string) {
+  return auth.verifyIdToken(idToken);
+}
+

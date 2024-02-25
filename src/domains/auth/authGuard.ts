@@ -1,12 +1,13 @@
-import { NextFunction, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-import { AuthedRequest } from '../../type';
+// import { AuthedRequest } from '../../type';
 import { UserError } from '../../utils';
+import { verifyIdToken } from '../../services';
 
-export function authGuard(
-  req: AuthedRequest,
+export async function authGuard(
+  req: Request,
   _res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const { authorization } = req.headers;
@@ -21,12 +22,16 @@ export function authGuard(
       throw new UserError('Malformed Authorization header');
     }
 
-    req.user = {
-      id: '1',
-      email: '123',
-      firstName: 'John',
-      createdAt: '2021-01-01T00:00:00.000Z',
-    };
+    const authUser = await verifyIdToken(token).catch((error) => {
+      console.error(error);
+      throw new UserError('Unauthorized');
+    });
+
+    console.log({
+      authUser,
+    });
+
+    Object.assign(req, { user: authUser });
     next();
   } catch (error) {
     next(error);
