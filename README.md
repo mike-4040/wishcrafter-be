@@ -36,9 +36,8 @@ We use knex cli to run migrations.
 
 Special configuration required to run .ts migrations.
 
-Invoke the knex cli with the following commands.
-
 ```bash
+# Run knex commands
 npm run knex -- [knex_command] [knex_option]
 
 # Example
@@ -46,4 +45,14 @@ npm run knex -- migrate:latest
 
 # Your best friend
 npm run knex -- --help
+```
+
+5. Useful commands
+
+```bash
+# Run emulators
+npm run emulate
+
+# Run dev server
+npm run dev
 ```
