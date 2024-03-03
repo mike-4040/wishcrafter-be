@@ -13,8 +13,7 @@ export async function getCurrentUser(
       throw new Error('getCurrentUser-missingAuthedUser');
     }
     const { id } = user;
-    console.log({ id });
-    res.send({ id });
+    res.send({ success: true, user: { id } });
   } catch (error) {
     next(error);
   }

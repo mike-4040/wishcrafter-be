@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-// import { AuthedRequest } from '../../type';
+import { AuthUser } from '../../models/type';
 import { UserError } from '../../utils';
 import { verifyIdToken } from '../../services';
 
@@ -17,7 +17,6 @@ export async function authGuard(
 
     const [_, token] = authorization.split(' ');
 
-    console.log({ token });
     if (!token.length) {
       throw new UserError('Malformed Authorization header');
     }
@@ -27,11 +26,12 @@ export async function authGuard(
       throw new UserError('Unauthorized');
     });
 
-    console.log({
-      authUser,
-    });
+    const user: AuthUser = {
+      email: authUser.email,
+      id: authUser.uid,
+    };
 
-    Object.assign(req, { user: authUser });
+    Object.assign(req, { user });
     next();
   } catch (error) {
     next(error);

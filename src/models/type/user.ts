@@ -13,3 +13,11 @@ export interface User {
   authCreated?: boolean;
   createdAt: string;
 }
+
+/**
+ * Minimal User data extracted form the auth token by the authGuard middleware
+ */
+export interface AuthUser {
+  email?: string;
+  id: string;
+}
