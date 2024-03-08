@@ -1,6 +1,8 @@
 import { getAuth } from 'firebase-admin/auth';
 import { initializeApp } from 'firebase-admin/app';
 
+import { getProperty, UserError } from '../utils';
+
 const app = initializeApp();
 
 const auth = getAuth(app);
@@ -31,10 +33,20 @@ export async function getAuthUserById(uid: string) {
 }
 
 export async function createCustomToken(uid: string) {
-  return auth.createCustomToken(uid)
+  return auth.createCustomToken(uid);
 }
 
 export async function verifyIdToken(idToken: string) {
-  return auth.verifyIdToken(idToken);
-}
+  try {
+    const decodedToken = await auth.verifyIdToken(idToken);
+    return decodedToken;
+  } catch (error) {
+    const code = getProperty(error, 'code');
 
+    if (code === 'auth/id-token-expired') {
+      throw new UserError('verifyIdToken-tokenExpired');
+    }
+
+    throw new Error('Unauthorized');
+  }
+}

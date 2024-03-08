@@ -21,10 +21,7 @@ export async function authGuard(
       throw new UserError('Malformed Authorization header');
     }
 
-    const authUser = await verifyIdToken(token).catch((error) => {
-      console.error(error);
-      throw new UserError('Unauthorized');
-    });
+    const authUser = await verifyIdToken(token);
 
     const user: AuthUser = {
       email: authUser.email,
