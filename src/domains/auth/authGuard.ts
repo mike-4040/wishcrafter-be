@@ -21,14 +21,14 @@ export async function authGuard(
       throw new UserError('Malformed Authorization header');
     }
 
-    const authUser = await verifyIdToken(token);
+    const { email, uid: id } = await verifyIdToken(token);
 
-    const user: AuthUser = {
-      email: authUser.email,
-      id: authUser.uid,
+    const authUser: AuthUser = {
+      email,
+      id,
     };
 
-    Object.assign(req, { user });
+    Object.assign(req, { authUser });
     next();
   } catch (error) {
     next(error);
