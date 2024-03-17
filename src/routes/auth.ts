@@ -1,7 +1,5 @@
 import { Router } from 'express';
 
-import { login, signUp } from '../domains/auth';
+import { signUp } from '../domains/auth';
 
-export const authRouter = Router()
-  .post('/login', login)
-  .post('/signup', signUp);
+export const authRouter = Router().post('/signup', signUp);

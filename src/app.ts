@@ -4,6 +4,7 @@ import express from 'express';
 import { authGuard } from './domains/auth';
 import { authRouter } from './routes/auth';
 import { userRouter } from './routes/user';
+import { wishRouter } from './routes/wish';
 import { errorHandler, secrets } from './utils';
 
 const {
@@ -18,5 +19,6 @@ express()
   .use('/auth', authRouter)
   .use(authGuard) // All routes below this line are protected
   .use('/user', userRouter)
+  .use('/wish', wishRouter)
   .use(errorHandler)
-  .listen(port, () => console.log(`App is running on port ${port}`));
+  .listen(port, () => console.log(`App is running on port http://localhost:${port}/`));

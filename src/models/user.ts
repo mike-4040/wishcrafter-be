@@ -23,3 +23,7 @@ export async function createUser(email: string, firstName: string) {
 
   return result;
 }
+
+export async function getUserById(id: string) {
+  return pg<DBUser>('users').select().where({ id }).first();
+}
