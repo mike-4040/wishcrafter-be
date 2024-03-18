@@ -1,5 +1,5 @@
 import { Router } from 'express';
 
-import { getCurrentUser } from '../domains/user';
+import { getCurrentUser } from '../controllers/user';
 
 export const userRouter = Router().get('/', getCurrentUser);

@@ -1,6 +1,7 @@
 import { Response, Router } from 'express';
 
 import { AuthedRequest } from '../type';
+import { createWish } from '../controllers/wish/createWish';
 
 function controller(req: AuthedRequest, res: Response) {
   console.log('user', req.authUser);
@@ -11,7 +12,7 @@ function controller(req: AuthedRequest, res: Response) {
 
 export const wishRouter = Router()
   .get('/', controller)
-  .post('/', controller)
+  .post('/', createWish)
   .get('/:id', controller)
   .patch('/:id', controller)
   .delete('/:id', controller);

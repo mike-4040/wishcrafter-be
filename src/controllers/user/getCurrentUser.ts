@@ -25,7 +25,7 @@ export async function getCurrentUser(
       email: dbUser.email,
       firstName: dbUser.first_name,
       authCreated: dbUser.auth_created,
-      createdAt: dbUser.created_at.toISOString(),
+      createdAt: dbUser.created_at,
     };
 
     console.log({ user, now: new Date() });

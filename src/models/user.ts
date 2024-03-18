@@ -16,7 +16,7 @@ export async function createUser(email: string, firstName: string) {
     first_name: firstName,
     email,
     auth_created: false,
-    created_at: new Date(),
+    created_at: Date.now(),
   };
 
   const [result] = await pg<DBUser>('users').insert(userToInsert, ['id']);

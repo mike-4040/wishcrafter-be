@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 
-import { authGuard } from './domains/auth';
+import { authGuard } from './controllers/auth';
 import { authRouter } from './routes/auth';
 import { userRouter } from './routes/user';
 import { wishRouter } from './routes/wish';
