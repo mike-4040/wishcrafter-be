@@ -3,7 +3,7 @@ export interface DBUser {
   first_name: string;
   email: string;
   auth_created?: boolean;
-  created_at: Date;
+  created_at: number;
 }
 
 export interface User {
@@ -11,7 +11,7 @@ export interface User {
   firstName: string;
   email: string;
   authCreated?: boolean;
-  createdAt: string;
+  createdAt: number;
 }
 
 /**

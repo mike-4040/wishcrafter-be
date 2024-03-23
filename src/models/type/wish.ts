@@ -3,7 +3,7 @@ export interface DBWish {
   user_id: string;
   title: string;
   description?: string;
-  created_at: Date;
+  created_at: number;
 }
 
 export interface Wish {
@@ -11,5 +11,5 @@ export interface Wish {
   userId: string;
   title: string;
   description?: string;
-  createdAt: string;
+  createdAt: number;
 }

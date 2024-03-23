@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
-import { DBUser } from './type';
 import { pg } from '../services';
+import { DBUser, User } from './type';
 
 export async function getUserByEmail(email: string) {
   return pg<DBUser>('users')
@@ -16,7 +16,7 @@ export async function createUser(email: string, firstName: string) {
     first_name: firstName,
     email,
     auth_created: false,
-    created_at: new Date(),
+    created_at: Date.now(),
   };
 
   const [result] = await pg<DBUser>('users').insert(userToInsert, ['id']);
@@ -24,6 +24,17 @@ export async function createUser(email: string, firstName: string) {
   return result;
 }
 
-export async function getUserById(id: string) {
-  return pg<DBUser>('users').select().where({ id }).first();
+export async function getUserById(id: string): Promise<User | undefined> {
+  const dbUser = await pg<DBUser>('users').select().where({ id }).first();
+  if (!dbUser) {
+    return undefined;
+  }
+
+  return {
+    id: dbUser.id,
+    email: dbUser.email,
+    firstName: dbUser.first_name,
+    authCreated: dbUser.auth_created,
+    createdAt: dbUser.created_at,
+  } satisfies User;
 }

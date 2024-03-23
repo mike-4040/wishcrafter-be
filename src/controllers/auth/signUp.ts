@@ -1,7 +1,7 @@
-import { NextFunction, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
+import { FirebaseError } from '../../type';
 import { asString, UserError } from '../../utils';
-import { AuthedRequest, FirebaseError } from '../../type';
 import { createAuthUser, createCustomToken } from '../../services';
 import { createUser, getUserByEmail } from '../../models/user';
 
@@ -11,12 +11,16 @@ const AUTH_USER_EXISTS_ERRORS = [
 ] as const;
 
 export async function signUp(
-  req: AuthedRequest,
+  req: Request,
   res: Response,
   next: NextFunction,
 ) {
   try {
-    const { body } = req;
+    const body = req.body as Record<string, unknown>;
+
+    if (!body || typeof body !== 'object') {
+      throw new UserError('signUpNoBody');
+    }
 
     const email = asString(body.email, 'signUpEmail');
     const password = asString(body.password, 'signUpPassword');
