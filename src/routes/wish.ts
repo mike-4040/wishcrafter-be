@@ -4,7 +4,7 @@ import { AuthedRequest } from '../type';
 import { createWish } from '../controllers/wish/createWish';
 
 function controller(req: AuthedRequest, res: Response) {
-  console.log('user', req.authUser);
+  console.log('user', req.user);
   console.log('body', req.body);
   console.log('params', req.params);
   res.send(req.body);

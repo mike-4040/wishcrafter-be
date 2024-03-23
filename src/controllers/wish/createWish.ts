@@ -8,12 +8,9 @@ export async function createWish(
   next: NextFunction,
 ) {
   try {
-    const { authUser } = req;
-    if (!authUser) {
-      throw new Error('createWish-missingAuthedUser');
-    }
+    const user = req.user!;
 
-    console.log('user', authUser);
+    console.log('user', user);
 
     res.send({ success: true });
   } catch (error) {
