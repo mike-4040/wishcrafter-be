@@ -35,6 +35,6 @@ export async function getUserById(id: string): Promise<User | undefined> {
     email: dbUser.email,
     firstName: dbUser.first_name,
     authCreated: dbUser.auth_created,
-    createdAt: dbUser.created_at,
+    createdAt: parseInt(dbUser.created_at as unknown as string, 10),
   } satisfies User;
 }

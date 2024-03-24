@@ -3,7 +3,7 @@ export interface DBUser {
   first_name: string;
   email: string;
   auth_created?: boolean;
-  created_at: number;
+  created_at: number; // pg driver returns bigint as strings
 }
 
 export interface User {

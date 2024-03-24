@@ -21,4 +21,6 @@ express()
   .use('/user', userRouter)
   .use('/wish', wishRouter)
   .use(errorHandler)
-  .listen(port, () => console.log(`App is running on port http://localhost:${port}/`));
+  .listen(port, () =>
+    console.log(`App is running on port http://localhost:${port}/`),
+  );
