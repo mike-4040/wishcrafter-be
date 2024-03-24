@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const eslint = require('@eslint/js');
+const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 const tsEslint = require('typescript-eslint');
 const stylistic = require('@stylistic/eslint-plugin');
 
@@ -8,8 +9,12 @@ module.exports = tsEslint.config({
   files: ['src/**/*.ts', 'eslint.config.js'],
 
   ignores: ['build/**', 'node_modules/**'],
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  extends: [eslint.configs.recommended, ...tsEslint.configs.recommended],
+  extends: [
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    eslint.configs.recommended,
+    ...tsEslint.configs.recommended,
+    eslintPluginPrettierRecommended,
+  ],
   plugins: {
     '@typescript-eslint': tsEslint.plugin,
     '@stylistic': stylistic,

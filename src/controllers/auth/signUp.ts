@@ -10,11 +10,7 @@ const AUTH_USER_EXISTS_ERRORS = [
   'auth/uid-already-exists',
 ] as const;
 
-export async function signUp(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export async function signUp(req: Request, res: Response, next: NextFunction) {
   try {
     const body = req.body as Record<string, unknown>;
 

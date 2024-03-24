@@ -10,5 +10,5 @@ export const secrets = {
     password: env.POSTGRES_PASSWORD,
     port: parseInt(env.POSTGRES_PORT || '0'),
     user: env.POSTGRES_USER,
-  }
+  },
 } as const;

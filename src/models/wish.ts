@@ -3,7 +3,9 @@ import { randomUUID } from 'node:crypto';
 import { pg } from '../services';
 import { DBWish, Wish } from './type';
 
-export async function createWish(wish: Wish) {
+export async function createWish(
+  wish: Omit<Wish, 'id' | 'createdAt'>,
+): Promise<Wish> {
   const wishToInsert: DBWish = {
     id: randomUUID(),
     user_id: wish.userId,
@@ -12,9 +14,19 @@ export async function createWish(wish: Wish) {
     created_at: Date.now(),
   };
 
-  return wishToInsert;
+  const [inserted] = await pg<DBWish>('wishes').insert(wishToInsert, [
+    'id',
+    'title',
+    'description',
+    'created_at',
+    'user_id',
+  ]);
 
-  const [result] = await pg<DBWish>('wishes').insert(wishToInsert, ['id']);
-
-  return result;
+  return {
+    id: inserted.id,
+    title: inserted.title,
+    description: inserted.description,
+    createdAt: Number(inserted.created_at),
+    userId: inserted.user_id,
+  } satisfies Wish;
 }
