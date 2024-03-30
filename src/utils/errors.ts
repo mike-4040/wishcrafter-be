@@ -21,18 +21,18 @@ export function errorHandler(
   _next: NextFunction,
 ) {
   if (err instanceof UserError) {
-    console.error(err.message);
-    res.status(400).send({ success: false, message: err.message });
+    console.error('errorHandler-UserError-', err.message);
+    res.status(400).send(err.message);
     return;
   }
 
   if (err instanceof FrontError) {
-    console.error(err);
-    res.status(400).send({ success: false, message: err.message });
+    console.error('errorHandler-frontError-', err);
+    res.status(400).send(err.message);
     return;
   }
 
   console.error('errorHandler: ', err);
 
-  res.status(500).send({ success: false, message: 'Internal Server Error' });
+  res.status(500).send('Internal Server Error');
 }

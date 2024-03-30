@@ -43,8 +43,14 @@ export async function verifyIdToken(idToken: string) {
   } catch (error) {
     const code = getProperty(error, 'code');
 
+    console.log('verifyIdToken', { code });
+
     if (code === 'auth/id-token-expired') {
       throw new UserError('verifyIdToken-tokenExpired');
+    }
+
+    if (code === 'auth/id-token-revoked') {
+      throw new UserError('verifyIdToken-tokenRevoked');
     }
 
     throw new Error('Unauthorized');
