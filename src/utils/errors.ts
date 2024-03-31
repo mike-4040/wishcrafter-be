@@ -32,7 +32,7 @@ export function errorHandler(
     return;
   }
 
-  console.error('errorHandler: ', err);
+  console.dir(err, { depth: null });
 
   res.status(500).send('Internal Server Error');
 }

@@ -3,6 +3,7 @@ import { NextFunction, Response } from 'express';
 
 import { AuthedRequest } from '../../type';
 import { createFactor } from '../../models/factor';
+import { Factor } from '../../models/type';
 
 export async function createFactorController(
   req: AuthedRequest,
@@ -14,16 +15,7 @@ export async function createFactorController(
 
     console.log({ user });
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const body = req.body as Record<string, any>;
-
-    const factor = {
-      wishId: body.wishId,
-      name: body.name,
-      type: body.type,
-      notImportant: body.notImportant,
-      value: body.value,
-    };
+    const factor = Factor.parse(req.body);
 
     console.log({ factor });
 
