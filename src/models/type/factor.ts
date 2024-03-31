@@ -2,41 +2,42 @@ import { z } from 'zod';
 
 const FactorType = z.enum(['FeaturePresence', 'NumericValue']);
 
-const FactorBase = z.object({
-  // id: z.string(),
-  wishId: z.string(),
+export const Factor = z.object({
+  createdAt: z.number(),
+  data: z.object({}).passthrough(), // only validating object exists
+  id: z.string(),
   name: z.string(),
-  type: FactorType,
   notImportant: z.boolean(),
-  // createdAt: z.number(),
-  // updatedAt: z.number(),
+  type: FactorType,
+  updatedAt: z.number(),
+  wishId: z.string(),
 });
 
-export const FeaturePresenceFactor = FactorBase.merge(
+export type Factor = z.infer<typeof Factor>;
+
+export const FeaturePresenceData = z
+  .object({
+    present: z.boolean(),
+    value: z.string(),
+  })
+  .strict();
+
+export const NumericValueData = z
+  .object({
+    value: z.number(),
+  })
+  .strict();
+
+export const FactorData = z.discriminatedUnion('type', [
   z.object({
     type: z.literal(FactorType.enum.FeaturePresence),
-    value: z.object({
-      present: z.boolean(),
-      value: z.string(),
-    }),
+    data: FeaturePresenceData,
   }),
-);
-
-export const NumericValueFactor = FactorBase.merge(
   z.object({
     type: z.literal(FactorType.enum.NumericValue),
-    value: z.object({
-      value: z.number(),
-    }),
+    data: NumericValueData,
   }),
-);
-
-export const Factor = z.discriminatedUnion('type', [
-  FeaturePresenceFactor,
-  NumericValueFactor,
 ]);
-
-export type Factor = z.infer<typeof Factor>;
 
 export interface DBFactor {
   created_at: number;
@@ -45,6 +46,6 @@ export interface DBFactor {
   not_important: boolean;
   type: string;
   updated_at: number;
-  value: Record<string, unknown>;
+  data: Record<string, unknown>;
   wish_id: string;
 }

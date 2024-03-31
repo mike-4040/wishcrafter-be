@@ -3,7 +3,7 @@ import { NextFunction, Response } from 'express';
 
 import { AuthedRequest } from '../../type';
 import { createFactor } from '../../models/factor';
-import { Factor } from '../../models/type';
+import { Factor, FactorData } from '../../models/type';
 
 export async function createFactorController(
   req: AuthedRequest,
@@ -15,9 +15,20 @@ export async function createFactorController(
 
     console.log({ user });
 
-    const factor = Factor.parse(req.body);
+    const factor = Factor.omit({
+      id: true,
+      createdAt: true,
+      updatedAt: true,
+    })
+      .strict()
+      .parse(req.body);
 
-    console.log({ factor });
+    factor.data = FactorData.parse({
+      type: factor.type,
+      data: factor.data,
+    }).data;
+
+    console.log(2, { factor });
 
     const newFactor = await createFactor(factor);
 
