@@ -12,7 +12,7 @@ export async function createFactor(
     name: factor.name,
     type: factor.type,
     not_important: factor.notImportant,
-    value: factor.value,
+    data: factor.data,
     created_at: Date.now(),
     updated_at: Date.now(),
   };
@@ -23,7 +23,7 @@ export async function createFactor(
     'name',
     'type',
     'not_important',
-    'value',
+    'data',
     'created_at',
     'updated_at',
   ]);
@@ -36,6 +36,6 @@ export async function createFactor(
     notImportant: inserted.not_important,
     createdAt: Number(inserted.created_at),
     updatedAt: Number(inserted.updated_at),
-    value: inserted.value as Factor['value'],
+    data: inserted.data as Factor['data'],
   } as Factor; // TODO: Fix this type assertion
 }

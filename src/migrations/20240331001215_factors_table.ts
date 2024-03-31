@@ -8,7 +8,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string('name').notNullable();
     table.string('type').notNullable();
     table.boolean('not_important').notNullable().defaultTo(false);
-    table.jsonb('value').notNullable();
+    table.jsonb('data').notNullable();
     table.bigint('created_at').notNullable();
     table.bigint('updated_at').notNullable();
   });
