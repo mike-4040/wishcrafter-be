@@ -30,3 +30,17 @@ export async function createWish(
     userId: inserted.user_id,
   } satisfies Wish;
 }
+
+export async function getWishesByUserId(userId: string): Promise<Wish[]> {
+  const wishes = await pg<DBWish>('wishes')
+    .select('*')
+    .where({ user_id: userId });
+
+  return wishes.map((wish) => ({
+    id: wish.id,
+    title: wish.title,
+    description: wish.description,
+    createdAt: Number(wish.created_at),
+    userId: wish.user_id,
+  }));
+}
