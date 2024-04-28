@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { NextFunction, Response } from 'express';
 
 import { AuthedRequest } from '../../type';
