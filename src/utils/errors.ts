@@ -1,3 +1,4 @@
+import { ZodError } from 'zod';
 import { NextFunction, Request, Response } from 'express';
 
 /**
@@ -21,14 +22,20 @@ export function errorHandler(
   _next: NextFunction,
 ) {
   if (err instanceof UserError) {
-    console.error('errorHandler-UserError-', err.message);
+    console.error('errorHandler-UserError: ', err.message);
     res.status(400).send(err.message);
     return;
   }
 
   if (err instanceof FrontError) {
-    console.error('errorHandler-frontError-', err);
+    console.error('errorHandler-frontError: ', err);
     res.status(400).send(err.message);
+    return;
+  }
+
+  if (err instanceof ZodError) {
+    console.error('errorHandler-ZodError: ', err.errors);
+    res.status(400).send(err.errors);
     return;
   }
 
