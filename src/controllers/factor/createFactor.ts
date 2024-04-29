@@ -12,7 +12,7 @@ export async function createFactorController(
   try {
     const user = req.user!;
 
-    console.log({ user });
+    console.log(1, { user });
 
     const factor = Factor.omit({
       id: true,
@@ -22,10 +22,13 @@ export async function createFactorController(
       .strict()
       .parse(req.body);
 
-    factor.data = FactorData.parse({
-      type: factor.type,
+    console.log(1, { factor });
+
+    // validation only
+    FactorData.parse({
+      factorType: factor.factorType,
       data: factor.data,
-    }).data;
+    });
 
     console.log(2, { factor });
 

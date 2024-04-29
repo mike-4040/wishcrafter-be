@@ -6,8 +6,8 @@ export async function up(knex: Knex): Promise<void> {
     table.uuid('wish_id').notNullable();
     table.foreign('wish_id').references('id').inTable('wishes');
     table.string('name').notNullable();
-    table.string('type').notNullable();
-    table.boolean('not_important').notNullable().defaultTo(false);
+    table.string('factor_type').notNullable();
+    table.boolean('is_important').notNullable().defaultTo(true);
     table.jsonb('data').notNullable();
     table.bigint('created_at').notNullable();
     table.bigint('updated_at').notNullable();

@@ -7,10 +7,10 @@ export const Factor = z.object({
   data: z.object({}).passthrough(), // only validating object exists
   id: z.string(),
   name: z.string(),
-  notImportant: z.boolean(),
-  type: FactorType,
+  isImportant: z.boolean(),
+  factorType: FactorType,
   updatedAt: z.number(),
-  wishId: z.string(),
+  wishId: z.string().uuid(),
 });
 
 export type Factor = z.infer<typeof Factor>;
@@ -28,24 +28,24 @@ export const NumericValueData = z
   })
   .strict();
 
-export const FactorData = z.discriminatedUnion('type', [
+export const FactorData = z.discriminatedUnion('factorType', [
   z.object({
-    type: z.literal(FactorType.enum.FeaturePresence),
+    factorType: z.literal(FactorType.enum.FeaturePresence),
     data: FeaturePresenceData,
   }),
   z.object({
-    type: z.literal(FactorType.enum.NumericValue),
+    factorType: z.literal(FactorType.enum.NumericValue),
     data: NumericValueData,
   }),
 ]);
 
 export interface DBFactor {
   created_at: number;
-  id: string;
-  name: string;
-  not_important: boolean;
-  type: string;
-  updated_at: number;
   data: Record<string, unknown>;
+  factor_type: string;
+  id: string;
+  is_important: boolean;
+  name: string;
+  updated_at: number;
   wish_id: string;
 }

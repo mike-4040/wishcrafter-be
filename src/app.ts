@@ -16,7 +16,7 @@ express()
   .use(express.json())
   .use(cors()) // TODO: Configure CORS
   // unprotected routes
-  .get('/', (_req, res) => res.send('Hello World'))
+  .get('/', (_, res) => res.send('Hello from WishCrafter!'))
   .use('/auth', authRouter)
   .use(authGuard) // All routes below this line are protected
   .use('/user', userRouter)
