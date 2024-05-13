@@ -1,19 +1,20 @@
 import { z } from 'zod';
 
-const FactorType = z.enum(['FeaturePresence', 'NumericValue']);
+const FactorKind = z.enum(['FeaturePresence', 'NumericValue']);
 
 export const Factor = z.object({
   createdAt: z.number(),
-  data: z.object({}).passthrough(), // only validating object exists
+  // only validating object exists, FactorData will validate the contents
+  data: z.object({}).passthrough(),
   id: z.string(),
   name: z.string(),
   isImportant: z.boolean(),
-  factorType: FactorType,
+  factorKind: FactorKind,
   updatedAt: z.number(),
   wishId: z.string().uuid(),
 });
 
-export type Factor = z.infer<typeof Factor>;
+export type FactorType = z.infer<typeof Factor>;
 
 export const FeaturePresenceData = z
   .object({
@@ -28,13 +29,13 @@ export const NumericValueData = z
   })
   .strict();
 
-export const FactorData = z.discriminatedUnion('factorType', [
+export const FactorData = z.discriminatedUnion('factorKind', [
   z.object({
-    factorType: z.literal(FactorType.enum.FeaturePresence),
+    factorKind: z.literal(FactorKind.enum.FeaturePresence),
     data: FeaturePresenceData,
   }),
   z.object({
-    factorType: z.literal(FactorType.enum.NumericValue),
+    factorKind: z.literal(FactorKind.enum.NumericValue),
     data: NumericValueData,
   }),
 ]);
@@ -42,7 +43,7 @@ export const FactorData = z.discriminatedUnion('factorType', [
 export interface DBFactor {
   created_at: number;
   data: Record<string, unknown>;
-  factor_type: string;
+  factor_kind: FactorType['factorKind'];
   id: string;
   is_important: boolean;
   name: string;

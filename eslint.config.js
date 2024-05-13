@@ -41,8 +41,10 @@ module.exports = tsEslint.config({
         argsIgnorePattern: '^_',
       },
     ],
-    '@stylistic/quotes': ['error', 'single'],
     '@stylistic/eol-last': ['error', 'always'],
+    '@stylistic/line-comment-position': ['error', { position: 'above' }],
+    '@stylistic/multiline-comment-style': ['error', 'starred-block'],
+    '@stylistic/quotes': ['error', 'single'],
     'no-duplicate-imports': 'error',
     'sort-imports': [
       'error',
