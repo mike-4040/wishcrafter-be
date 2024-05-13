@@ -26,9 +26,11 @@ export async function signUp(req: Request, res: Response, next: NextFunction) {
       throw new Error('signUpLookupFailed', { cause });
     });
 
+    /**
+     * TODO: The user might exist in the db but not in the auth system
+     * We should check for that and handle it
+     */
     if (dbUser?.auth_created) {
-      // TODO: The user might exist in the db but not in the auth system
-      // We should check for that and handle it
       throw new UserError('signUpAccountExists');
     }
 

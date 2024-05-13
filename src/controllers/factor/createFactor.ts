@@ -20,17 +20,13 @@ export async function createFactorController(
       updatedAt: true,
     })
       .strict()
-      .parse(req.body);
-
-    console.log(1, { factor });
+      .parse({ ...req.body, ...req.params });
 
     // validation only
     FactorData.parse({
-      factorType: factor.factorType,
+      factorKind: factor.factorKind,
       data: factor.data,
     });
-
-    console.log(2, { factor });
 
     const newFactor = await createFactor(factor);
 
