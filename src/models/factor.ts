@@ -36,25 +36,24 @@ export async function getFactorsByWishId(
   userId: string,
   wishId: string,
 ): Promise<FactorType[]> {
-  console.log('getFactorsByWishId', { userId, wishId });
-
   const dbFactors = await pg<DBFactor>('factors')
     .select('factors.*')
     .join('wishes', 'factors.wish_id', 'wishes.id')
-    .where('wishes.user_id', userId);
+    .where('wishes.user_id', userId)
+    .andWhere('factors.wish_id', wishId);
 
   return dbFactors.map(transformDbFactorToFactorType);
 }
 
 function transformDbFactorToFactorType(dbFactor: DBFactor): FactorType {
   return {
-    createdAt: dbFactor.created_at,
+    createdAt: Number(dbFactor.created_at),
     data: dbFactor.data,
     id: dbFactor.id,
     isImportant: dbFactor.is_important,
     name: dbFactor.name,
     factorKind: dbFactor.factor_kind,
-    updatedAt: dbFactor.updated_at,
+    updatedAt: Number(dbFactor.updated_at),
     wishId: dbFactor.wish_id,
   };
 }
