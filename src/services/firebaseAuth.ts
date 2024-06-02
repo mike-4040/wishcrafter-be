@@ -46,11 +46,11 @@ export async function verifyIdToken(idToken: string) {
     console.log('verifyIdToken', { code });
 
     if (code === 'auth/id-token-expired') {
-      throw new UserError('verifyIdToken-tokenExpired');
+      throw new UserError('verifyIdToken-tokenExpired-noRetry');
     }
 
     if (code === 'auth/id-token-revoked') {
-      throw new UserError('verifyIdToken-tokenRevoked');
+      throw new UserError('verifyIdToken-tokenRevoked-noRetry');
     }
 
     throw new Error('Unauthorized');

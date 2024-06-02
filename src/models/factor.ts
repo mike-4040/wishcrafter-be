@@ -45,6 +45,21 @@ export async function getFactorsByWishId(
   return dbFactors.map(transformDbFactorToFactorType);
 }
 
+export async function getUserIdByFactorId(
+  factorId: string,
+): Promise<string | undefined> {
+  const [dbWish] = (await pg('factors')
+    .select('wishes.user_id')
+    .join('wishes', 'factors.wish_id', 'wishes.id')
+    .where('factors.id', factorId)) as { user_id: string }[];
+
+  return dbWish?.user_id;
+}
+
+export async function deleteFactor(factorId: string): Promise<void> {
+  await pg('factors').where('id', factorId).del();
+}
+
 function transformDbFactorToFactorType(dbFactor: DBFactor): FactorType {
   return {
     createdAt: Number(dbFactor.created_at),
