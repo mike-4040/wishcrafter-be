@@ -35,7 +35,7 @@ export function errorHandler(
 
   if (err instanceof ZodError) {
     console.error('errorHandler-ZodError: ', err.errors);
-    res.status(400).send(err.errors);
+    res.status(400).json({ message: 'zodError-noRetry', errors: err.errors });
     return;
   }
 
