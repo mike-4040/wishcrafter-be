@@ -1,10 +1,10 @@
 import { NextFunction, Response } from 'express';
 
-import { AuthedRequest } from '../../type';
-import { canDeleteFactor } from '../../permissions/factor';
-import { deleteFactor } from '../../models/factor';
-import { Factor } from '../../models/type';
-import { FrontError } from '../../utils';
+import { AuthedRequest } from '../../type/index.js';
+import { canDeleteFactor } from '../../permissions/factor.js';
+import { deleteFactor } from '../../models/factor.js';
+import { Factor } from '../../models/type/index.js';
+import { FrontError } from '../../utils/index.js';
 
 export async function deleteFactorController(
   req: AuthedRequest,

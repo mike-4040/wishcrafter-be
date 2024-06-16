@@ -1,4 +1,4 @@
-import { FrontError } from '.';
+import { FrontError } from './errors.js';
 
 export function asString(value: unknown, context: string): string {
   if (value === undefined) {

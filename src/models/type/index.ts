@@ -1,3 +1,3 @@
-export * from './factor';
-export * from './user';
-export * from './wish';
+export * from './factor.js';
+export * from './user.js';
+export * from './wish.js';

@@ -1,1 +1,1 @@
-export * from './getCurrentUser';
+export * from './getCurrentUser.js';

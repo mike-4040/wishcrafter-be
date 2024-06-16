@@ -1,10 +1,10 @@
 import { Response, Router } from 'express';
 
-import { AuthedRequest } from '../type';
-import { createFactorController } from '../controllers/factor/createFactor';
-import { createWishController } from '../controllers/wish/createWish';
-import { getFactorsController } from '../controllers/factor/getFactors';
-import { getOwnWishes } from '../controllers/wish/getOwnWishes';
+import { AuthedRequest } from '../type/index.js';
+import { createFactorController } from '../controllers/factor/createFactor.js';
+import { createWishController } from '../controllers/wish/createWish.js';
+import { getFactorsController } from '../controllers/factor/getFactors.js';
+import { getOwnWishes } from '../controllers/wish/getOwnWishes.js';
 
 function controller(req: AuthedRequest, res: Response) {
   console.log('user', req.user);

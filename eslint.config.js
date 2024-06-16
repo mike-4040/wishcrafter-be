@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-const eslint = require('@eslint/js');
-const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
-const tsEslint = require('typescript-eslint');
-const stylistic = require('@stylistic/eslint-plugin');
+import eslint from '@eslint/js';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import stylistic from '@stylistic/eslint-plugin';
+import tsEslint from 'typescript-eslint';
 
-module.exports = tsEslint.config({
+export default tsEslint.config({
   files: ['src/**/*.ts', 'eslint.config.js'],
 
   ignores: ['build/**', 'node_modules/**'],
