@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
-import { pg } from '../services/index.js';
-import { DBFactor, FactorType } from './type/index.js';
+import { pg } from '../services/database.js';
+import { DBFactor, FactorType } from './type/factor.js';
 
 // TODO: pass in userId, and check that the wish belongs to the user
 export async function createFactor(
@@ -45,15 +45,20 @@ export async function getFactorsByWishId(
   return dbFactors.map(transformDbFactorToFactorType);
 }
 
-export async function getUserIdByFactorId(
-  factorId: string,
-): Promise<string | undefined> {
-  const [dbWish] = (await pg('factors')
-    .select('wishes.user_id')
-    .join('wishes', 'factors.wish_id', 'wishes.id')
-    .where('factors.id', factorId)) as { user_id: string }[];
+export interface FactorParents {
+  userId?: string;
+  wishId?: string;
+}
 
-  return dbWish?.user_id;
+export async function getFactorParents(
+  factorId: string,
+): Promise<FactorParents> {
+  const [dbWish] = (await pg('factors')
+    .select(['wishes.user_id', 'factors.wish_id'])
+    .join('wishes', 'factors.wish_id', 'wishes.id')
+    .where('factors.id', factorId)) as { user_id: string; wish_id: string }[];
+
+  return { userId: dbWish?.user_id, wishId: dbWish?.wish_id };
 }
 
 export async function deleteFactor(factorId: string): Promise<void> {

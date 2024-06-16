@@ -1,4 +1,4 @@
-export interface Permission {
+export interface Permit {
   ok: boolean;
   reason?: string;
 }

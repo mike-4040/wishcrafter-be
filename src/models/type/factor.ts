@@ -6,7 +6,7 @@ export const Factor = z.object({
   createdAt: z.number(),
   // only validating object exists, FactorData will validate the contents
   data: z.object({}).passthrough(),
-  id: z.string(),
+  id: z.string().uuid(),
   name: z.string(),
   isImportant: z.boolean(),
   factorKind: FactorKind,
