@@ -28,8 +28,8 @@ export function errorHandler(
   }
 
   if (err instanceof FrontError) {
-    console.error('errorHandler-frontError: ', err);
-    res.status(400).send(err.message);
+    console.error('errorHandler: ', err);
+    res.status(400).json({ message: err.message });
     return;
   }
 

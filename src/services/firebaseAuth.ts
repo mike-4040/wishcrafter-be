@@ -1,7 +1,7 @@
 import { getAuth } from 'firebase-admin/auth';
 import { initializeApp } from 'firebase-admin/app';
 
-import { getProperty, UserError } from '../utils/index.js';
+import { UserError, getProperty } from '../utils/index.js';
 
 const app = initializeApp();
 

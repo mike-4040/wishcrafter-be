@@ -47,7 +47,7 @@ export default tsEslint.config({
     'sort-imports': [
       'error',
       {
-        ignoreCase: true,
+        ignoreCase: false,
         ignoreDeclarationSort: false,
         ignoreMemberSort: false,
         memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'],

@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
-import { pg } from '../services/index.js';
-import { DBWish, Wish } from './type/index.js';
+import { pg } from '../services/database.js';
+import { DBWish, Wish } from './type/wish.js';
 
 export async function createWish(
   wish: Omit<Wish, 'id' | 'createdAt'>,
@@ -43,4 +43,20 @@ export async function getWishesByUserId(userId: string): Promise<Wish[]> {
     createdAt: Number(wish.created_at),
     userId: wish.user_id,
   }));
+}
+
+export async function getWishById(wishId: string): Promise<Wish | undefined> {
+  const [wish] = await pg<DBWish>('wishes').select('*').where({ id: wishId });
+
+  if (!wish) {
+    return undefined;
+  }
+
+  return {
+    id: wish.id,
+    title: wish.title,
+    description: wish.description,
+    createdAt: Number(wish.created_at),
+    userId: wish.user_id,
+  } satisfies Wish;
 }

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { FirebaseError } from '../../type/index.js';
-import { asString, UserError } from '../../utils/index.js';
+import { UserError, asString } from '../../utils/index.js';
 import { createAuthUser, createCustomToken } from '../../services/index.js';
 import { createUser, getUserByEmail } from '../../models/user.js';
 
