@@ -1,2 +1,2 @@
-export * from './authGuard';
-export * from './signUp';
+export * from './authGuard.js';
+export * from './signUp.js';

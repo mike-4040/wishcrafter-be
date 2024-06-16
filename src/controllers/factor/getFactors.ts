@@ -1,8 +1,8 @@
 import { NextFunction, Response } from 'express';
 
-import { AuthedRequest } from '../../type';
-import { Factor } from '../../models/type';
-import { getFactorsByWishId } from '../../models/factor';
+import { AuthedRequest } from '../../type/index.js';
+import { Factor } from '../../models/type/index.js';
+import { getFactorsByWishId } from '../../models/factor.js';
 
 export async function getFactorsController(
   req: AuthedRequest,

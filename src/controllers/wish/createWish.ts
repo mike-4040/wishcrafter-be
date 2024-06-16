@@ -1,8 +1,8 @@
 import { NextFunction, Response } from 'express';
 
-import { asString } from '../../utils';
-import { AuthedRequest } from '../../type';
-import { createWish } from '../../models/wish';
+import { asString } from '../../utils/index.js';
+import { AuthedRequest } from '../../type/index.js';
+import { createWish } from '../../models/wish.js';
 
 export async function createWishController(
   req: AuthedRequest,

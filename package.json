@@ -6,6 +6,7 @@
   "engines": {
     "node": ">20.1.0"
   },
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "db:start": "docker-compose up -d",

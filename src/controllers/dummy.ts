@@ -1,6 +1,6 @@
 import { Response } from 'express';
 
-import { AuthedRequest } from '../type';
+import { AuthedRequest } from '../type/index.js';
 
 export function dummy(req: AuthedRequest, res: Response) {
   console.log('user', req.user);

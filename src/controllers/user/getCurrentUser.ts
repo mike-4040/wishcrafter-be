@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express';
 
-import { AuthedRequest } from '../../type';
+import { AuthedRequest } from '../../type/index.js';
 
 export async function getCurrentUser(
   req: AuthedRequest,

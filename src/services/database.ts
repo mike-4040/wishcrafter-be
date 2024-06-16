@@ -1,6 +1,6 @@
 import knex from 'knex';
 
-import { secrets } from '../utils/secrets';
+import { secrets } from '../utils/secrets.js';
 
 const { postgres } = secrets;
 

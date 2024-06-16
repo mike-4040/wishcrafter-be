@@ -1,6 +1,6 @@
-import { getUserIdByFactorId } from '../models/factor';
-import { Permission } from '../type';
-import { User } from '../models/type';
+import { getUserIdByFactorId } from '../models/factor.js';
+import { Permission } from '../type/index.js';
+import { User } from '../models/type/index.js';
 
 export async function canDeleteFactor(
   user: User,

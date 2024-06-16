@@ -1,12 +1,12 @@
 import cors from 'cors';
 import express from 'express';
 
-import { authGuard } from './controllers/auth';
-import { authRouter } from './routes/auth';
-import { factorRouter } from './routes/factor';
-import { userRouter } from './routes/user';
-import { wishRouter } from './routes/wish';
-import { errorHandler, secrets } from './utils';
+import { authGuard } from './controllers/auth/index.js';
+import { authRouter } from './routes/auth.js';
+import { factorRouter } from './routes/factor.js';
+import { userRouter } from './routes/user.js';
+import { wishRouter } from './routes/wish.js';
+import { errorHandler, secrets } from './utils/index.js';
 
 const {
   app: { port },

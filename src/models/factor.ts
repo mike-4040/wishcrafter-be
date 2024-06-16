@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
-import { pg } from '../services';
-import { DBFactor, FactorType } from './type';
+import { pg } from '../services/index.js';
+import { DBFactor, FactorType } from './type/index.js';
 
 // TODO: pass in userId, and check that the wish belongs to the user
 export async function createFactor(

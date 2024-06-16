@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 
-import { AuthedRequest } from '../../type';
-import { getWishesByUserId } from '../../models/wish';
+import { AuthedRequest } from '../../type/index.js';
+import { getWishesByUserId } from '../../models/wish.js';
 
 export async function getOwnWishes(
   req: AuthedRequest,

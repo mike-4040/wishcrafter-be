@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
-import { pg } from '../services';
-import { DBWish, Wish } from './type';
+import { pg } from '../services/index.js';
+import { DBWish, Wish } from './type/index.js';
 
 export async function createWish(
   wish: Omit<Wish, 'id' | 'createdAt'>,
