@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
 import { pg } from '../services/database.js';
+import { transformToSnakeCase } from '../utils/objects.js';
 import { DBFactor, FactorType } from './type/factor.js';
 
 // TODO: pass in userId, and check that the wish belongs to the user
@@ -76,4 +77,15 @@ function transformDbFactorToFactorType(dbFactor: DBFactor): FactorType {
     updatedAt: Number(dbFactor.updated_at),
     wishId: dbFactor.wish_id,
   };
+}
+
+export async function updateFactor(
+  id: string,
+  update: Partial<Omit<FactorType, 'id' | 'createdAt' | 'updatedAt'>>,
+): Promise<boolean> {
+  const dbUpdate = transformToSnakeCase(update);
+
+  Object.assign(dbUpdate, { updated_at: Date.now() });
+
+  return (await pg<DBFactor>('factors').where({ id }).update(dbUpdate)) > 0;
 }
