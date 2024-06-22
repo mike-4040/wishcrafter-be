@@ -21,11 +21,11 @@ export async function canDeleteFactor(
 }
 
 export async function canUpdateFactor(
+  id: string,
   user: User,
-  factor: Partial<FactorType> & Pick<FactorType, 'id'>,
+  factor: Partial<FactorType>,
 ): Promise<Permit> {
-  console.log({ factor });
-  const { userId, wishId } = await getFactorParents(factor.id);
+  const { userId, wishId } = await getFactorParents(id);
 
   // userId and wishId coexist, we check for both, just in case
   if (!userId || !wishId) {
