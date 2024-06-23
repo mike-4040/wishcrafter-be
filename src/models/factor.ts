@@ -41,7 +41,8 @@ export async function getFactorsByWishId(
     .select('factors.*')
     .join('wishes', 'factors.wish_id', 'wishes.id')
     .where('wishes.user_id', userId)
-    .andWhere('factors.wish_id', wishId);
+    .andWhere('factors.wish_id', wishId)
+    .orderBy('name', 'asc');
 
   return dbFactors.map(transformDbFactorToFactorType);
 }
