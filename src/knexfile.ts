@@ -4,7 +4,7 @@ import { secrets } from './utils/secrets.js';
 
 const { postgres } = secrets;
 
-const config: { [key: string]: Knex.Config } = {
+export default {
   development: {
     client: 'postgresql',
     connection: {
@@ -55,6 +55,4 @@ const config: { [key: string]: Knex.Config } = {
       tableName: 'knex_migrations',
     },
   },
-};
-
-module.exports = config;
+} satisfies { [key: string]: Knex.Config };

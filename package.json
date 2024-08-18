@@ -14,7 +14,7 @@
     "dev": "tsc -w & GOOGLE_APPLICATION_CREDENTIALS=./keep/wishcrafter-staging-gac.json node --env-file=.env --watch ./build/app.js",
     "emulate": "firebase emulators:start --import=./emulator_data --export-on-exit",
     "format": "eslint --fix ./eslint.config.js ./src",
-    "knex": "node --env-file=.env ./node_modules/.bin/knex --knexfile ./src/knexfile.ts",
+    "knex": "tsc && node --env-file=.env ./node_modules/.bin/knex --knexfile ./build/knexfile.js",
     "lint": "eslint ./eslint.config.js ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
