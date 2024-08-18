@@ -5,8 +5,8 @@ import tsEslint from 'typescript-eslint';
 
 export default tsEslint.config({
   files: ['src/**/*.ts', 'eslint.config.js'],
-
   ignores: ['build/**', 'node_modules/**'],
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   extends: [
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     eslint.configs.recommended,
@@ -20,7 +20,9 @@ export default tsEslint.config({
   languageOptions: {
     parser: tsEslint.parser,
     parserOptions: {
-      project: true,
+      projectService: {
+        allowDefaultProject: ['*.js'],
+      },
     },
   },
   rules: {
